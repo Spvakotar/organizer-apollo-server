@@ -39,9 +39,9 @@ const startServer = async () => {
   })
 
   // 8
-  httpServer.listen({ port: process.env.PORT || 4000 }, ({ url }) =>
+  httpServer.listen({ port: process.env.PORT || 4000 }, () =>
     console.log(`
-      🚀  Server is ready at ${url}
+      🚀  Server is ready on port ${process.env.PORT}
       📭  Query at https://studio.apollographql.com/dev
     `)
   )
