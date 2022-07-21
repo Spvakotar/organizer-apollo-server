@@ -1,14 +1,9 @@
 {
-    "compilerOptions": {
-      "target": "es6",
-      "module": "commonjs",
-      "lib": ["es6"],
-      "allowJs": true,
-      "outDir": "build",
-      "rootDir": "src",
-      "strict": true,
-      "noImplicitAny": true,
-      "esModuleInterop": true,
-      "resolveJsonModule": true
-    }
+  "compilerOptions": {
+    "sourceMap": true,
+    "outDir": "build",
+    "strict": true,
+    "lib": ["esnext", "dom"],
+    "esModuleInterop": true
+  }
 }
