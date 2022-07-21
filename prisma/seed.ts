@@ -22,7 +22,7 @@ const prisma = new PrismaClient()
 const data = [
   {name:"Sunil", email:"sp@vak.com", links:[{url:"http://norris.info", shortUrl:"norris"}]}
 ];
-
+console.log(data);
 async function main() {
   for (let entry of data) {
     await prisma.user.create({
@@ -35,6 +35,7 @@ async function main() {
       },
     })
   }
+  console.log('mail seed call')
 }
 
 main().finally(async () => {
