@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "init": "prisma db push && prisma db seed",
     "dev": "nodemon",
     "build": "rimraf ./build && tsc",
     "start": "npm run build && node build/index.js",
     "generate-client": "npx prisma generate --data-proxy",
-    "migrate": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" npx prisma migrate deploy"
+    "migrate": "DATABASE_URL=\"$DATABASE_MIGRATE_URL\" npx prisma migrate deploy"
   },
   "prisma": {
-    "schema": "src/prisma/schema.prisma"
+    "seed": "ts-node prisma/seed"
   },
   "keywords": [],
   "author": "",

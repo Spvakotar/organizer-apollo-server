@@ -2,7 +2,9 @@ import { createServer } from "http";
 import express from "express";
 import { ApolloServer, gql } from "apollo-server-express";
 
-const { prisma } = require("./prisma/client");
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
 
 // 1
 const startServer = async () => {
@@ -14,14 +16,13 @@ const startServer = async () => {
   // 3
   const typeDefs = gql`
     type Query {
-      boards: [Board]
+      users: [User]
     }
 
-    type Board {
+    type User {
       id: ID!
-      title: String!
-      description: String
-      path: String!
+      name: String!
+      email: String
     }
   `;
 
@@ -29,32 +30,26 @@ const startServer = async () => {
   const resolvers = {
     Query: {
       boards: () => {
-        return prisma.board.findMany()
+        return prisma.user.findMany()
       }
     },
   };
 
-  async function main() {
-    await prisma.$connect()
-  
-    await prisma.user.create({
-      data: {
-        name: 'Rich',
-        email: 'hello@prisma.com',
+  const main = async () => {
+    const users = await prisma.user.findMany({
+      where: {
+        name: {
+          startsWith: 'A',
+        },
       },
     })
   
-    const allUsers = await prisma.user.findMany()
-    console.dir(allUsers, { depth: null })
+    console.log('Top users (alphabetical): ', users)
   }
-
+  
   main()
-  .catch((e) => {
-    throw e
-  })
-  .finally(async () => {
-    await prisma.$disconnect()
-  })
+    .catch((e) => console.error('Error in Prisma Client query: ', e))
+    .finally(async () => await prisma.$disconnect())
 
   // 5
   const apolloServer = new ApolloServer({

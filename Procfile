@@ -1,2 +1,1 @@
-web: npm run generate-client && npm start
-release: npm run migrate
+web: npm run init && npm start
