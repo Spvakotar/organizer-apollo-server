@@ -1,2 +1,2 @@
 web: npm start
-release: npx prisma generate --data-proxy
+release: npm run generate-client && npm run migrate

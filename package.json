@@ -7,7 +7,8 @@
     "dev": "nodemon",
     "build": "rimraf ./build && tsc",
     "start": "npm run build && node build/index.js",
-    "migrate": "npx prisma migrate dev"
+    "generate-client": "npx prisma generate --data-proxy",
+    "migrate": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" npx prisma migrate deploy"
   },
   "prisma": {
     "schema": "src/prisma/schema.prisma"
