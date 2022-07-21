@@ -34,6 +34,28 @@ const startServer = async () => {
     },
   };
 
+  async function main() {
+    await prisma.$connect()
+  
+    await prisma.user.create({
+      data: {
+        name: 'Rich',
+        email: 'hello@prisma.com',
+      },
+    })
+  
+    const allUsers = await prisma.user.findMany()
+    console.dir(allUsers, { depth: null })
+  }
+
+  main()
+  .catch((e) => {
+    throw e
+  })
+  .finally(async () => {
+    await prisma.$disconnect()
+  })
+
   // 5
   const apolloServer = new ApolloServer({
     typeDefs,
