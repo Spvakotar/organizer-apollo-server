@@ -29,20 +29,14 @@ const startServer = async () => {
   // 4
   const resolvers = {
     Query: {
-      boards: () => {
+      users: () => {
         return prisma.user.findMany()
       }
     },
   };
 
   const main = async () => {
-    const users = await prisma.user.findMany({
-      where: {
-        name: {
-          startsWith: 'A',
-        },
-      },
-    })
+    const users = await prisma.user.findMany()
   
     console.log('Top users (alphabetical): ', users)
   }

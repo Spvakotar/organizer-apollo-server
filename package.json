@@ -4,16 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "init": "prisma db push && prisma db seed",
+    "init": "set DATABASE_URL=\"$DATABASE_MIGRATE_URL\" prisma db push && prisma db seed",
     "dev": "nodemon",
     "build": "rimraf ./build && tsc",
     "start": "npm run build && node build/index.js",
     "generate-client": "npx prisma generate --data-proxy",
-    "migrate": "DATABASE_URL=\"$DATABASE_MIGRATE_URL\" npx prisma migrate deploy"
+    "migrate": "set DATABASE_URL=\"$DATABASE_MIGRATE_URL\" && npx prisma migrate deploy"
   },
   "prisma": {
-    "schema": "src/prisma/schema.prisma",
-    "seed": "ts-node src/prisma/seed"
+    "seed": "ts-node prisma/seed"
   },
   "keywords": [],
   "author": "",
@@ -25,9 +24,8 @@
     "graphql": "^16.5.0"
   },
   "devDependencies": {
-    "@types/faker": "^6.6.9",
+    "@faker-js/faker": "^7.3.0",
     "@types/node": "^18.0.6",
-    "faker": "^6.6.6",
     "nodemon": "^2.0.19",
     "prisma": "^4.1.0",
     "rimraf": "^3.0.2",
