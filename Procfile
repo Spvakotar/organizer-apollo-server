@@ -1,1 +1,1 @@
-web: npm run generate-client && npm start
+web: npm run init && npm start

@@ -7,7 +7,7 @@
     "init": "env-cmd -f ./db-push/.env prisma db push && env-cmd -f ./db-push/.env prisma db seed",
     "dev": "nodemon",
     "build": "rimraf ./build && tsc",
-    "start": "npm run build && env-cmd npm run generate-client && env-cmd node build/index.js",
+    "start": "npm run build && npm run generate-client && node build/index.js",
     "generate-client": "npx prisma generate --data-proxy",
     "echo": "url : ${DATABASE_MIGRATE_URL}",
     "migrate": "env-cmd -f ./db-push/.env npx prisma migrate deploy"
