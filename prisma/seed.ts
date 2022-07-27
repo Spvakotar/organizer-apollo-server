@@ -12,10 +12,6 @@ const personData = Array.from({ length: NUMBER_OF_USERS }).map(() => ({
   number: faker.phone.number()
 }));
 console.log(personData)
-const data = [
-  {name:"Sunil", email:"sp@vak.com", links:[{url:"http://norris.info", shortUrl:"norris"}]}
-];
-//console.log(data);
 
 async function main() {
   for (let entry of personData) {
